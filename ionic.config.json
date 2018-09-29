@@ -1,0 +1,8 @@
+{
+  "name": "news-app-ionic",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "ionic-angular",
+  "pro_id": "2ae615df"
+}
