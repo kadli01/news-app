@@ -1,5 +1,22 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import * as Config from '../../config';
+
+// export  class  News {
+
+// 	id: number;
+// 	title: string;
+// 	excerpt: string;
+// 	description: string;
+// 	featured_image: string;
+
+// 	constructor(values: Object = {}) {
+
+// 	Object.assign(this, values);
+
+// 	}
+
+// }
 
 /*
   Generated class for the NewsProvider provider.
@@ -10,18 +27,13 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class NewsProvider {
 
-	apiUrl = 'http://192.168.0.100:5555/api';
-
-	constructor(public http: HttpClient) {
-		console.log('Hello NewsProvider Provider');
-
-	}
+	constructor(public http: HttpClient) { }
 
 
-	getNews() {
-		// console.log('headers', this.headers);
+	getNewsList() {
 		return new Promise(resolve => {
-			this.http.get(this.apiUrl + '/news').subscribe(response => {
+			this.http.get(Config.API.URL + '/news')
+			.subscribe(response => {
 				resolve(response);
 			}, error => {
 				console.log(error);
@@ -29,4 +41,13 @@ export class NewsProvider {
 		});
 	}
 
+	getNews(id: number) {
+		return new Promise(resolve => {
+			this.http.get(Config.API.URL + '/news/' + id).subscribe(response => {
+				resolve(response);
+			}, error => {
+				console.log(error);
+			});
+		});
+	}
 }

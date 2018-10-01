@@ -7,12 +7,39 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>news new.title</ion-title>
+    <ion-title *ngIf="this.loaded">{{news.title}}</ion-title>
   </ion-navbar>
 
 </ion-header>
 
+//style="margin-top: 56px;
+<ion-content *ngIf="this.loaded"> 
+  
+  <ion-card>
 
-<ion-content padding>
+    <div>
+      <img *ngIf="news.featured_image" src="{{this.imgUrl + news.featured_image}}"/>
+      <img *ngIf="!news.featured_image" src="assets/imgs/logo.png"/>
+    </div>
+
+    <div class="details">
+      <small>{{news.user.name}}</small>
+      <small style="float: right;">{{news.created_at}}</small>
+    </div>
+
+    <ion-card-content>
+      <ion-card-title>
+        {{news.title}}
+      </ion-card-title>
+      
+      <p>
+        {{news.excerpt}}
+      </p>
+       <p>
+        {{news.description}}
+      </p>
+    </ion-card-content>
+  
+  </ion-card>
 
 </ion-content>

@@ -6,13 +6,18 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content class="cards-bg">
+<ion-content>
   
   <ion-card *ngFor="let news of newsList" (click)="showNews(news.id)">
 
-    <div style='height: 100px;'>
-      <img *ngIf="news.featured_image" src="{{news.featured_image}}"/>
-      <img *ngIf="!news.featured_image" src="assets/imgs/logo.png" style='height: 100%; width: 100%; object-fit: cover'/>
+    <div class="image-container">
+      <img *ngIf="news.featured_image" src="{{this.imgUrl + news.featured_image}}"/>
+      <img *ngIf="!news.featured_image" src="assets/imgs/logo.png">
+    </div>
+
+    <div class="details">
+      <small>{{news.user.name}}</small>
+      <small style="float: right;">{{news.created_at}}</small>
     </div>
 
     <ion-card-content>
@@ -26,41 +31,5 @@
     </ion-card-content>
   
   </ion-card>
-
- <!--  <ion-card>
-
-    <img src="assets/img/nin-live.png"/>
-
-    <ion-card-content>
-      <ion-card-title>
-        Nine Inch Nails Live
-      </ion-card-title>
-      <p>
-        The most popular industrial group ever, and largely responsible for bringing the music to a mass audience.
-      </p>
-    </ion-card-content>
-
-    <ion-row no-padding>
-      <ion-col>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='star'></ion-icon>
-          Favorite
-        </button>
-      </ion-col>
-      <ion-col text-center>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='musical-notes'></ion-icon>
-          Listen
-        </button>
-      </ion-col>
-      <ion-col text-right>
-        <button ion-button clear small color="danger" icon-start>
-          <ion-icon name='share-alt'></ion-icon>
-          Share
-        </button>
-      </ion-col>
-    </ion-row>
-
-  </ion-card> -->
 
 </ion-content>

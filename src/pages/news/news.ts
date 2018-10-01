@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { NewsProvider } from '../../providers/news/news';
+import * as Config from '../../config';
+
 
 /**
  * Generated class for the NewsPage page.
@@ -15,12 +18,24 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 })
 export class NewsPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  	console.log(navParams.get('id'));
-  }
+	news: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad NewsPage');
-  }
+	loaded: boolean;
+	imgUrl = Config.API.IMAGE;
+
+	constructor(public navCtrl: NavController, public navParams: NavParams, public newsProvider: NewsProvider) {
+		
+		var id = navParams.get('id');
+
+		this.newsProvider.getNews(id)
+		.then(response => {
+		    this.news = response;
+		    this.loaded = true;
+	    });
+	}
+
+	ionViewDidLoad() {
+		console.log('ionViewDidLoad NewsPage');
+	}
 
 }
