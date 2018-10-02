@@ -16,7 +16,7 @@ export class HomePage {
 	loaded: boolean;
 
 	constructor(public navCtrl: NavController, public newsProvider: NewsProvider) {
-		this.newsProvider.getNewsList()
+		this.newsProvider.getNewsList() 
 		.then((response: Response) => {
 
 		    this.newsList = response;
